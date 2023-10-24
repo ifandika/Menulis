@@ -1,0 +1,68 @@
+
+						Pendahuluan Recursive
+
+
+PENDAHULUAN
+	
+	Recursive adalah teknik dimana sebuah fungsi memanggil dirinya sendiri. Contoh sebuah fungsi
+	dengan nilai 10 lalu memanggil dirinya dengan nilai - 1, maka akan 9 terus hingga nilai 1 lalu
+	fungsi berakhir.
+
+	fungsi(a = 10)
+	fungsi(a - 1)
+		fungsi(a = 9)
+		fungsi(a - 1)
+			...
+			fungsi(a = 1)
+			if(a == 1) stop
+
+	Perlu diingat recursive harus memiliki batas/sebuah kondisi agar recursive berhenti jika tidak maka
+	akan infinity loop(Perulangan tak terbatas). Contoh implementasi dari recursive.
+	- Faktorial
+	- File System
+	- Binary Search
+
+
+IMPLEMENTASI RECURSIVE FAKTORIAL
+
+	Faktorial adalah perkalian dengan n x (n - 1) ... 1. 
+
+	// Kode implementasi faktorial
+	public int faktorial(int n) {
+		if(n < 0) // Error
+		else if(n == 1) {
+			return 1;
+		}
+		else {
+			return n * faktorial(n - 1);
+		}
+	}
+
+	> Ilustrasi
+
+	faktorial(5) (5)-> 24 x 5 = 120
+		faktorial(4) (4)-> 6 x 4 = 24
+			faktorial(3) (3)-> 2 x 3 = 6
+				faktorial(2) (2)-> return 1 x 2 = 2
+					faktorial(1) (1)-> return 1 x 1 = 1
+
+
+IMPLEMENTASI RECURSIVE DRAW ENGSLIH RULER
+
+	---- 0
+	-
+	--
+	-
+	---
+	-
+	--
+	-
+	---- 1
+	-
+	--
+	-
+	---
+	-
+	--
+	-
+	---- 2

@@ -1,0 +1,29 @@
+
+				TIME AND SPACE COMPLEXITY
+
+| Pendahuluan
+  Ada banyak cara dalam memecahkan masalah pada program komputer, karena
+  banyak cara maka kita tidak tahu mana yang lebih efisien dari segi waktu
+  dan ruang yang dipakai. 
+  Time dan Space complexity adalah cara untuk melihat banyak waktu dan ruang
+  yang dipakai oleh sebuah solusi(Algoritma).
+
+
+| Time Complexity
+  Banyak waktu yang dibutuhkan untuk menyelesaikan. Biasanya tergantung dari
+  banyak/panjang 'input' dan operasi yang dilakukan. Input disimbolkan dengan
+  simbol 'N'.
+  Contoh algoritma:
+  
+    // Fungsi menjumlahkan semua nilai pada array | input belum tahu
+	int getTotalNumArray(int[] numArray) // N
+		int total = 0 // N
+		for (i from range 0 to numArray.length and i++) // N
+			total += numArray[i]; // 1(Konstan)
+			
+		return total // 1
+  
+  Input adalah N, lalu variabel total N karena akan ditambah hingga akhir dari array dimana
+  tidak tahu ahir nya kapan. Lalu for sampai panjang array, operasi penambahan konstan lalu
+  return konstan. Maka N+N+N*1+1 = N+N+N maka O(N)
+  

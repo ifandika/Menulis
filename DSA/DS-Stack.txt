@@ -1,0 +1,262 @@
+
+																					Stack Data Structure
+
+
+PENDAHULUAN
+	Stack adalah struktur data yang menyimpan data menggunakan prinsip LIFO. Stack sendiri
+	merupakan perluasan dari Vektor.
+
+METHOD
+	push(item) = Operasi menambah data ke stack.
+	pop() = Operasi menghapus data paling atas pada stack.
+	peek() = Operasi mengambil data tapi tidak menghilagkan data yang diambil.
+	top() = Operasi mengambil data paling atas.
+	size() = Operasi mengambil total jumlah nilai pada stack.
+
+
+JAVA STACK API
+	public class Stack<E> extends Vector<E>
+
+	Untuk menggunakan stack pada java sudah tersedia di package 'java.util', lebih spesifiknya
+
+	java.lang.Object
+		java.util.AbstractCollection<E>
+			java.util.AbstractList<E>
+				java.util.Vector<E>
+					java.util.Stack<E>
+
+	Karena Stack adalah ADT(Abstract Data Type) maka bisa menyimpan berbagai data tidak hanya 
+	bilangan, untuk menyimpan data dengan tipe yang tertentu bisa kita masukan tipe pada argument
+	<E> atau elemen. Ganti simbol E dengan tipe data, semisal Integer, String, Objek, atau Class.
+
+		Stack<Buah> stackBuah = new Stack<Buah>();
+
+	Pada java versi > 8 penulisan tipe hanya di awal saja.
+
+		Stack<Buah> stackBuah = new Stack<>();		
+
+	> Method
+
+	Modifier		Type							Method and Description
+	boolean			empty() 					Cek stack kosong tidak.
+	E						peek() 						Ambil data stack tanpa menghapus.
+	E						pop() 						Hapus nilai paling atas.
+	E						push(E item) 			Tambah data ke stack.
+	int					search(Object o) 	Cari nilai pada stack jika tidak ketemu retun -1.
+
+	> Implementasi Stack
+
+	public interface Stack<E> {
+		int size( );
+
+		boolean isEmpty( );
+
+		void push(E e);
+
+		E top( );
+
+		E pop( );
+	}
+
+
+IMPLEMENTASI STACK DENGAN ARRAY
+	
+	Mengimplementasikan stack dengan array sebagai penyimpan data, maka saat mengakses data pada stack
+	menggunakan index. Pada operasi cukup kita panggil operasi dari single linked list.
+
+	Method Stack 		Method Single Linked List
+	push(item)			.addFist(item)
+	pop()						.removeFirst()
+	isEmpty()				.isEmpty()
+	top()						.first()
+	size()					.size()
+
+		public class ArrayStack<E> impelemnts Stack<E> {
+			private static final int CAPACITY = 100;
+			private E[] data;
+			private int last = -1;
+
+			public ArrayStack() {
+				this(CAPACITY);
+			}
+
+			public ArrayStack(int capacity) {
+				data = new E[capacity];
+			}
+
+			public int size() {
+				return (last + 1);
+			}
+
+			public boolean isEmpty() {
+				return (last == -1);
+			}
+
+			public E top() {
+				if(isEmpty()) return null;
+				return data[last];
+			}
+
+			public E push(E item) {
+				if(size() == CAPACITY) throw new IllegalStateException("Stack is full");
+				data[++last] = item;
+			}
+
+			public E pop() {
+				if(isEmpty()) return null;
+				E removed = data[last];
+				data[last--] = null;
+				return removed;
+			}
+		}
+
+	> Kompleksitas
+
+	Dari implemntasi di atas kompleksitas dari waktu yang dijalakan setiap method/fungsi
+	Method			Kompleksitas
+	size()			O(1) // Waktu tetap
+	isEmpty()		O(1)
+	top()				O(1)
+	push()			O(1)
+	pop()				O(1)
+
+	> Contoh
+
+	ArrayStack<Integer> as = new ArrayStack<>();
+
+
+IMPELEMNTASI STACK DENGAN SINGLE LINKED LIST
+
+	Implementasi stack dengan single linked list sebagai tempat menyimpan data.
+
+	// Implementasi Single Linked List dengan stack
+	public class LinkedStack<E> implements Stack<E> {
+		private SingleLinkedlist<E> list = SingleLinkedlist<>();
+		public LinkedList() {}
+
+		public int size() {
+			return list.size();
+		}
+
+		public void push(E item) {
+			list.addFirst(item);
+		}
+
+		public boolean empty() {
+			return list.isEmpty();
+		}
+
+		public E top() {
+			return list.first();
+		}
+
+		publci E pop() {
+			return list.removeFist();
+		}
+	}
+
+
+
+BALIK NILAI ARRAY MENGGUNAKAN STACK
+
+	Karena stack menggunakan prinsip LIFO maka posisi nilai awal bisa menjadi nilai akhir.
+	Stack mungkin untuk membalikkan suatu urutan nilai, contoh jika ada nilai 1-5 urut dari
+	paling besar ke maka balik dari besar ke kecil.
+
+	Langkah
+	- Buat variabel untuk panjang array.
+	- Deklarasi stack untuk simpan nilai array.
+	- Perulangan dari 0 - panjang array.
+	- Push nilai array index 'i' ke stack.
+	- Perulangan dari 0 - panjang array.
+	- Set 'nums[i]' = nilai stack.
+
+	// Kode method reverse array
+	public void reverseArray(E[] nums) {
+		int length = nums.length;
+		Stack<E> stack = new ArrayStack<>(length);
+		for(int i = 0; i < length; i++) {
+			stack.push(nums[i]);
+		}
+		for(int i = 0; i < length; i++) {
+			nums[i] = stack.pop();
+		}
+	}
+
+	Fungsi dapat dibuat generic/umum agar bisa reverse banyak tipe data.
+
+	// Contoh
+	public class Main {
+		public static void main(String... args) {
+			Integer[] intArr = {1, 2, 3, 4, 5};
+			String[] strArr = {"A". "B", "C"};
+
+			System.out.println(Arrays.toString(intArr));
+			System.out.println(Arrays.toString(strArr));
+
+			System.out.println("Reversing...");
+
+			reverseArray(intArr);
+			reverseArray(strArr);
+
+			System.out.println(Arrays.toString(intArr));
+			System.out.println(Arrays.toString(strArr));
+		}
+	}
+	Output:
+	[1, 2, 3, 4, 5]
+	[A, B, C]
+	Reversing...
+	[5, 4, 3, 2, 1]
+	[C, B, A]
+
+
+MATCHING PARENTHESES USING STACK
+
+	Menggunakan Stack untuk cek apakah sebuah parenthesis benar/tidak. Parentesis sendiri adalah
+	beberapa gabungkan simbol yang sudah ditentutkan aturannya. Setiap simbol permbuka harus 
+	diakhiri dengan simbol penutup, jika salah satu kurang maka paenthesis tidak valid.
+
+	- Parentheses '(' dan ')'
+	- Braces 			'{' dan '}'
+	- Bracket 		'[' dan ']'
+
+	Contoh parenthesis:
+	- ()((())) 	true
+	- ([{}]) 		true
+	- ({(})}) 	false
+	- (} 				false
+
+	Langkah:
+	- Jika argumen kosong return true.
+	- Jika panjang argument modulo 2 hasil != 0 "Berati panjang ganjil" return false.
+	- Deklarasi Stack.
+	- Perulangan dari 1 - panjang argumen.
+	- Jika simbol 'i' == '(' atau '{' atau '[' maka push ke Stack.
+	- Jika Stack kosong berati simbol depan bukan simbol pembuka maka return false.
+	- Jika argumen 'i' == simbol pembuka dan nilai top stack == bukan simbol penutup yang keduanya
+		tipe simbol yang sama maka return false.
+
+	// Implemntasi matching parentheses
+	public boolean mathingParentheses(String s) {
+		if(s == null || s == "") return true;
+		if(s.length() % 2 != 0) return false;
+		
+		Stack<Character> stack = new Stack<>();
+		
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
+				stack.push(s.charAt(i));
+			}
+			else if(stack.empty()) return false;
+			else if((s.charAt(i) == ')' && stack.peek() != '(') ||
+					(s.charAt(i) == '}' && stack.peek() != '{') ||
+					(s.charAt(i) == ']' && stack.peek() != '[') {
+				return false;
+			}
+			else {
+				stack.pop();
+			}
+		}
+		return stack.empty();
+	}
