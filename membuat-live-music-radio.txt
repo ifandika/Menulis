@@ -1,0 +1,41 @@
+
+# Live Music Radio
+
+• Membuat layanan live music radio.
+
+A1. Bahan
+	• Virtualbox
+	• File Debian iso
+	• Apache web server(Apache2)
+	• icecast2
+	• Pemutar music
+
+A2. Langkah-langkah
+	1. Jalankan virtualbox(Debian)
+	2. Konfigurasi IP Address(Untuk IP Server)
+		• IP Address
+		• Gateway
+		• DNS
+		• Netmask
+		• Broadcast(Untuk broadcast opsional, jika terjadinerror maka tidak usah)
+	3. Ubah setingan/pengaturan virtualbox->network, ubah adapter menjadi Bridge
+	4. Restart konfigurasi IP/Debian
+		• /etc/init.d/networking restart
+	5. apt/apt-get update/upgrade(Untuk perbarui package)
+	6. Install apache web server(Apache2)
+	7. Install icecast2
+		• apt/apt-get install icecast2
+	8. Konfigurasi icecast2
+		• nano /etc/icecast2/icecast.xml
+			• Ubah pada <hostname> menjadi ip server agar bisa diakses secara online
+	9. Restart/Start/Status konfigurasi icecast2
+		• service icecast2 restart(Untuk restart)
+		• service icecast2 start(Untuk status)
+	10. Tes koneksi
+		• Ping dari klien ke server
+		• Pink dari server ke klien
+	11. Akses
+		• Akses lewat browser http://{ip server}, jika tidak ketemu maka tidak perlu
+			pakai http
+		• Jika masuk ke administrasi maka username(admin), password(Password dari konfigurasi icecast2)
+

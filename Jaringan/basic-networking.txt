@@ -1,0 +1,32 @@
+
+| Basic Networking/Dasar-dasar jaringan
+
+
+IP Address/Alamat IP
+DHCP Server/Client
+DNS
+	- DNS Lookup
+TLS(Transport Layer Security)
+HTTP/HTTPS
+Protocol/Protokol
+Port
+Socket
+SMB
+UDP
+TCP
+OSI Model
+	- [1. Physical]
+	- [2. Data link]
+	- [3. Network]
+	- [4. Transport]
+	- [5. Session]
+	- [6. Presentation]
+	- [7. Application]
+Transmission mode/Mode transmisi
+	- Simplex
+	- Half-Duplex
+	- Full-Duplex
+IMAP
+SMTP
+POP3
+Logical Port/Logika port

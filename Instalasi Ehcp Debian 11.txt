@@ -1,0 +1,7 @@
+Instalasi Ehcp Debian 11
+
+1. Install Package
+- apt-get install mysql-server
+- apt-get install apache2
+- apt-get install php
+- apt-get install phpmyadmin

@@ -1,0 +1,34 @@
+
+| Alur belajar pemprograman
+
++ Materi
+  - Pemprograman komputer(Computer programming)
+  - Sejarah pemprograman komputer(History computer programming)
+  + Algoritma(AlgorithmA)
+      - Flowchart
+      - Prseoducode
+      - Searching/Pencarian
+      - Sorting/Pengurutan
+      - Recursive/Memanggil dirinya sendiri
+      - Dynamic Programming
+      - Greedy
+      - Back Tracking
+      
+  + Kompleksitas algoritma
+    - BIG O
+    
+  - Data structure/Strutur data
+  - Programming language
+  - Kompilasi
+  - Paradigma pemprograman
+  + Database/Penyimpanan data
+    - Relatation/Relasi
+    
+  + SQL
+    - SQL Query
+    
+  + Panging
+    - Skema memori manajemen untuk komputer menyimpan dan mengambil data dari penyimpanan sekunder.
+    
+  - Memory Management
+  

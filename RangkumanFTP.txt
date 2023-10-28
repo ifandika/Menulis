@@ -1,0 +1,30 @@
+
+| FTP(File Transfer Protocol(
+
+# Alat
+  • XAMPP
+  • FileZilla
+  • Wireshark
+  
+# SSDP(Simple Service Discovery Protocol)
+  • Sebuah protokol untuk iklan atau informasi baru pada jaringan.
+
+1. Hubungkan virtualbox ke internet dengan seting/network pilih adapter menjadi NAT
+	agar tidak konfigurasi ip secara manual.
+2. Update/Upgrade package, dgn perintah apt update/upgrade
+3. Instalasi ftp server(proftpd), dgn perintah apt install proftpd/proftpd-basic.
+	 Lalu pilih standalone.
+4. Jika menggunakan NAT maka tidak perlu konfigurasi IP, jika Bridge-Adapter/Host-Only-Adapter
+	 maka perlu konfigurasi terlebih dahulu.
+	 - Konfigurasi ip dgn perintah nano /etc/network/interfaces
+		 "Jika error Failed to start raise networking ..., maka terdapat kesalahan pada konfigurasi IP"
+	- Restart konfigurasi IP dgn perintah /etc/init.d/networking restart
+	- Jika ingin menghubungkan ke client(PC utama) maka perlu ping ke klien dan sebaliknya.
+5. Konfigurasi proftpd dgn perintah nano /etc/proftpd/proftpd.conf, lakukan perubahan secukupnya. 
+	 Umunya perubahan pada DefaultRoot adalah directory yang akan diakses.
+	 - Restart konfigurasi proftpd dgn perintah /etc/init.d/proftpd restart
+6. Umunya setiap perubahan sebelumnya dilakukan pengujian terlebih dahulu di reboot, agar semua
+	 konfigurasi lancar, perintah reboot.
+7. Cek ip server(IP virtualbox), dgn perintah ip a.
+8. Lakukan pengaksesan lewat browser/ftp klien, untuk host/alamat server menggunakan ip virtualbox,
+	 username nama akun virtualbox, untuk pasword pasword akun debian, untuk port bawaannya 21.

@@ -1,0 +1,78 @@
+
+Author: Maulana Ifandika
+Pass ssh di termux = 123
+
+
+					Tutorial SSH
+				____________________
+
+
+| Pengenalan
+  SSH atau Secure Shell, protokol untuk remote akses. Menggunakan cryptograpy untuk verifikasi, menggunakan kunci privat dan 
+  publik, privat tidak boleh di bagikan, publik boleh dibagikan. SSH berjalan di port 22.
+  SSH dibagi mjd 3 jenis:
+	- SSH klient
+	- SSH server
+	- SSH agent
+  Software implemntasi ssh ada 'openssh' dan 'dropbear'.
+
+
+| Cara Kerja
+- Kita buat kunci public dan privat, yg publik kita berikan ke server(yg akan diremote), lalu dari server kunci di bungkus
+  dan dikirm ke kita, lalu kita buka dengan kunci privat, hanya kunci privat yg bisa membukanya.
+  
+  
+  Menginstal ssh, hasil isntalasi ssh di termux pada direktori '/usr/etc/ssh/'.
+  [
+		// Di termux android
+		pkg install openssh/dropbear
+  ]
+  Jalankan sshd(ssh daemon) dengan 'sshd', hentikan dengan 'pkill sshd'.
+  Login dengan ssh:
+  [
+		// Ke lokal
+		ssh user@localhost | ssh -p <nilai_port> user@localhost
+		
+  ]
+  Membuat kunci ssh di lokal, hasil kunci pada direktori '/data/data/com.termux/files/home/.ssh/'.
+  [
+		~$ ssh-keygen
+		// Output
+		// Generating public/private rsa key pair.
+		// Enter file in which to save the key (/data/data/com.termux/files/home/.ssh/id_rsa):
+		// Enter passphrase (empty for no passphrase): --Enter lagi
+		// Enter same passphrase again: --Enter lagi
+		// Your identification has been saved in /data/data/com.termux/files/home/.ssh/id_rsa --Privat key, jangan dibagikan
+		// Your public key has been saved in /data/data/com.termux/files/home/.ssh/id_rsa.pub --Public key
+		// The key fingerprint is:
+		// SHA256:rRJdfOzxaKoBmzWn92UwiDK2X0VGrXLSzDJvWxRdT1E u0_a242@localhost
+		// The key's randomart image is:
+		// +---[RSA 3072]----+
+		// |            .. oE|
+		// |         . o  o.o|
+		// |          o+*. ..|
+		// |       . +=**+.  |
+		// |      * S +BB..  |
+		// |     . X = +oo.  |
+		// |      = + +. oo  |
+		// |       o = ..o   |
+		// |        o   .    |
+		// +----[SHA256]-----+
+  ]
+  Mengubah konfigurasi sshd(ssh daemon):
+  [
+		~$ nano /etc/ssh/sshd_config
+  ]
+
+
+- SSH Agent
+  Digunakan untuk deploy/push/commit ke server.
+  
+  Memulai ssh agent di latar belakang:
+  [
+		// Memulai ssh agent
+		~$ eval "$(ssh-agent -s)"
+		
+		// Matikan ssh agent
+		~$ eval "$(ssh-agent -k)"
+  ]

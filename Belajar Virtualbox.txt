@@ -1,0 +1,13 @@
+
+Belajar Virtualbox
+
+- Virtualbox adalah semacam komputer virtual yang digunakan untuk mengisntall OS khususnya.
+
+
+# Adapter Virtualbox
+Digunakan untuk menghubungkan dari OS dalam Virtualbox ke PC fisik.
+- NAT
+- Bridge Adapter
+- Host Only Adapter
+- 
+
